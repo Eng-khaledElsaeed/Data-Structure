@@ -122,12 +122,48 @@ public:
 			}
 		}
 	}
+	void updateNode(int key, int data) {
+		node* targetNode = isExist(key);
+		if (isExist(key) != NULL) {
+			targetNode->data = data;
+		}
+		else {
+			cout << "this elemet by key " << key << "not exist" << endl;
+		}
+	}
+	void printing() {
+		if (head == NULL) {
+			cout << "single linked list are empty\n";
+		}
+		else {
+			node* ptr = head;
+			while (ptr->next!=NULL)
+			{
+				cout << "node key -> " << ptr->key << "node data -> " << ptr->data << endl;
+				ptr = ptr->next;
+			}
+			cout << "node key -> " << ptr->key << "node data -> " << ptr->data << endl;
+		}
+	}
 };
 
 
 
 int main() {
-
+	singleLinkedLst s;
+	node* n1 = new node(0, 15);
+	node* n2 = new node(1, 30);
+	node* n3 = new node(2, 45);
+	node* n4 = new node(3, 60);
+	node* n5 = new node(4, 75);
+	node* n6 = new node(5, 90);
+	s.append(n1);
+	s.append(n2);
+	s.append(n3);
+	s.append(n4);
+	s.append(n5);
+	s.append(n6);
+	s.printing();
 
 	return 0;
 }
