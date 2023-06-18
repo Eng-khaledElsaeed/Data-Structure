@@ -18,6 +18,7 @@ public:
 		this->data = data;
 		this->key = key;
 	}
+
 };
 class Doubly_linkedlist {
 private:
@@ -28,6 +29,9 @@ public:
 	};
 	Doubly_linkedlist(node* n) {
 		this->head = n;
+	};
+	~Doubly_linkedlist() {
+		delete head;
 	};
 	node* isExist(int k) {
 		node* ptr = head;
@@ -51,7 +55,7 @@ public:
 			}
 			else {
 				node* ptr = head;
-				while (ptr != NULL) {
+				while (ptr->next != NULL) {
 					ptr = ptr->next;
 				}
 				ptr->next = n;
@@ -59,6 +63,7 @@ public:
 			}
 		}
 	};
+
 	void preappend(node* n) {
 		if (isExist(n->key) != NULL) {
 			cout << "this element key aready exist" << endl;
@@ -74,11 +79,11 @@ public:
 			}
 		}
 	}
-	void insertNode(node* n,int key) {
+	void insertNode(node* n, int key) {
 		if (isExist(n->key) != NULL) {
 			cout << "this element key aready exist" << endl;
 		}
-		else {
+		else if (isExist(key) != NULL) {
 			node* targetNode = isExist(key);
 			if (targetNode->next == NULL) {
 				targetNode->next = n;
@@ -91,25 +96,93 @@ public:
 				targetNode->next = n;
 			}
 		}
-	}
+		else {
+			cout << "this key not exist in linked list" << endl;
+		}
+	};
+
 	void deleteNodeByKey(int k) {
 		if (head == NULL) {
 			cout << "linkedlist aready empty" << endl;
 		}
-		else 
-		if (isExist(k)!=NULL) {
-			node* deleteNode = isExist(k);
-			if (deleteNode->next == NULL) {
+		else {
+			if (isExist(k) != NULL) {
+				node* deleteNode = isExist(k);
+				if (head->key == k) {
+					head->next->privious = NULL;
+					head = head->next;
+				}
+				else {
+					if (deleteNode->next == NULL) {
+						deleteNode->privious->next = NULL;
+					}
+					else {
+						deleteNode->privious->next = deleteNode->next;
+						deleteNode->next->privious = deleteNode->privious;
+					}
+				}
 
+			}
+			else {
+				cout << "this node key not exist\n";
+			}
+		}
+
+	};
+	void updateNode(int k, int d) {
+		if (isExist(k) != NULL) {
+			node* targetnode = isExist(k);
+			targetnode->data = d;
+		}
+		else {
+			cout << "this node not exist" << endl;
+		}
+	};
+	void printlist() {
+		node* ptr = head;
+		if (head != NULL) {
+			while (ptr!=NULL)
+			{
+				cout << "element key ==> " << ptr->key <<"element value ==>" << ptr->data <<endl;
+				ptr = ptr->next;
 			}
 		}
 		else {
-			cout << "this node key not exist\n";
+			cout << "linked list are empty" << endl;
 		}
 	}
-
+	
 };
 int main() {
+
+	Doubly_linkedlist d;
+	node* n1 = new node(50, 1);
+	node* n2 = new node(100, 2);
+	node* n3 = new node(150, 3);
+	node* n4 = new node(200, 4);
+	node* n5 = new node(250, 5);
+
+	d.append(n1);
+	d.append(n2);
+	d.append(n3);
+	d.append(n4);
+	d.append(n5);
+
+	d.printlist();
+	cout << "-----------------------------------------------------------------\n";
+	d.deleteNodeByKey(3);
+	d.printlist();
+	cout << "-----------------------------------------------------------------\n";
+	node* n =new node(300, 6);
+	d.insertNode(n,2);
+	d.printlist();
+	cout << "-----------------------------------------------------------------\n";
+	node* n7 = new node(350, 7);
+	d.preappend(n7);
+	d.printlist();
+
+
+
 
 
 
