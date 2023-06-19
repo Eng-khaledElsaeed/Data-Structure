@@ -137,12 +137,11 @@ public:
 		}
 		else {
 			node* ptr = head;
-			while (ptr->next!=NULL)
+			while (ptr!=NULL)
 			{
 				cout << "node key -> " << ptr->key << "node data -> " << ptr->data << endl;
 				ptr = ptr->next;
 			}
-			cout << "node key -> " << ptr->key << "node data -> " << ptr->data << endl;
 		}
 	}
 };

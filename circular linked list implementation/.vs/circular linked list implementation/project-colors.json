@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "3d72f56a-2292-4028-a8ca-999ee52e4b77": {
+      "ProjectGuid": "3d72f56a-2292-4028-a8ca-999ee52e4b77",
+      "DisplayName": "circular linked list implementation",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
